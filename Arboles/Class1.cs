@@ -6,10 +6,19 @@ namespace Arboles
 {
     class Nodo
     {
-        public string Nombre { get; set; }
+        private string dato;
+        private Nodo izq;
+        private Nodo der;
 
-        public string Izquierda { get; set; }
+        public string Dato { get => dato; set=> dato = value; }
+        public Nodo Izquierda { get =>izq; set=> izq = value; }
 
-        public string Derecha { get; set; }
+        public Nodo Derecha { get => der; set => der = value; }
+        public Nodo()
+        {
+            dato = "0";
+            izq = null;
+            der = null;
+            }
     }
 }
