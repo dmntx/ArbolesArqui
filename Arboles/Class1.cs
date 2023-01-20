@@ -6,7 +6,7 @@ namespace Arboles
 {
     class Nodo
     {
-        private string dato;
+        private string dato; //Datos del nodo
         private Nodo izq;
         private Nodo der;
 
