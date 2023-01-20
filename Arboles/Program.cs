@@ -14,5 +14,9 @@ namespace Arboles
             arbol.Insertar("3", raiz);
             arbol.Transversa(raiz);
         }
+        static public void Ecuacion()
+        {
+            Console.WriteLine("");
+        }
     }
 }
