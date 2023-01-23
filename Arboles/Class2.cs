@@ -17,8 +17,6 @@ namespace Arboles
 
         public Nodo Insertar(string dat, Nodo NodoN)
         {
-            int numero;
-            bool isNumber=false;
             Nodo temp = null; //nodo auxiliar
             if(NodoN == null) //Si el nodo que le pasamos aún no se inicializa
             {
@@ -26,18 +24,40 @@ namespace Arboles
                 temp.Dato = dat; //le asignamos el dato que queremos agregar al nodo temporal
                 return temp; //retornamos el nodo temporal
             }
-            if(dat == "*" && NodoN.Izquierda==null)
+            else
             {
-                NodoN.Izquierda = Insertar(dat, NodoN.Izquierda);
+                return NodoN;
             }
-            else if(int.TryParse(dat, out numero) == true && NodoN.Izquierda != null)
+        }
+
+        public Nodo InsertarIzq(string dat, Nodo NodoN)
+        {
+            Nodo temp = null; 
+            if(NodoN.Izquierda == null)
             {
-                NodoN.Izquierda = Insertar(dat, NodoN.Izquierda);
+                temp = new Nodo();
+                temp.Dato = dat;
+                NodoN.Izquierda = temp;
             }
-            if(dat == NodoN.Dato || dat == "-" || dat == "/") { //aqui igual, pero es incersion para los hijos del nodo
-                NodoN.Derecha = Insertar(dat, NodoN.Derecha);
+            else {
+                NodoN.Izquierda = InsertarIzq(dat, NodoN.Izquierda);
             }
-            return NodoN; //retornamos el nodoN si es que llegó a ser un hijo
+            return temp ;
+        }
+        public Nodo InsertarDer(string dat, Nodo NodoN)
+        {
+            Nodo temp = null;
+            if (NodoN.Derecha == null)
+            {
+                temp = new Nodo();
+                temp.Dato = dat;
+                NodoN.Derecha = temp;
+            }
+            else
+            {
+                NodoN.Derecha = InsertarDer(dat, NodoN.Derecha);
+            }
+            return temp;
         }
         public void Recorrido(Nodo NodoN) //Es solo para verificar los hijos del arbol
         {
@@ -47,14 +67,14 @@ namespace Arboles
             }
             for(int n= 0; n < i; n++)
             {
-                Console.WriteLine("");
+                Console.Write("   ");
             }
-            Console.WriteLine(NodoN.Dato);
+            Console.Write(NodoN.Dato);
 
             if(NodoN.Izquierda != null)
             {
                 i++;
-                Console.Write("Hijo izquierda");
+                Console.Write("\n   Hijo izquierda\n  ");
                 Recorrido(NodoN.Izquierda);
                 i--;
             }
@@ -62,8 +82,28 @@ namespace Arboles
             if(NodoN.Derecha != null)
             {
                 i++;
-                Console.Write("Hijo Derecha");
+                Console.Write("\n   Hijo Derecha\n   ");
                 Recorrido(NodoN.Derecha);
+                i--;
+            }
+        }
+        public void RecorridoOrdenado(Nodo NodoN)
+        {
+            if (NodoN == null)
+            {
+                return;
+            }
+            if (NodoN.Izquierda != null)
+            {
+                i++;
+                RecorridoOrdenado(NodoN.Izquierda);
+                i--;
+            }
+            Console.Write("{0} ", NodoN.Dato);
+            if (NodoN.Derecha != null)
+            {
+                i++;
+                RecorridoOrdenado(NodoN.Derecha);
                 i--;
             }
         }
