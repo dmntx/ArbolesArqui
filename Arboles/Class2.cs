@@ -9,6 +9,9 @@ namespace Arboles
         private Nodo raiz; //nodo raiz para inicializar el arbol
         private Nodo trabajo; //
         private int i = 0;
+        private int j = 0;
+        public string[] ec = new string[20];
+        public string ec2;
         public Arbol()
         {
             raiz = null;
@@ -87,11 +90,12 @@ namespace Arboles
                 i--;
             }
         }
+        
         public void RecorridoOrdenado(Nodo NodoN)
         {
             if (NodoN == null)
             {
-                return;
+                return ;
             }
             if (NodoN.Izquierda != null)
             {
@@ -99,7 +103,10 @@ namespace Arboles
                 RecorridoOrdenado(NodoN.Izquierda);
                 i--;
             }
-            Console.Write("{0} ", NodoN.Dato);
+            Console.Write("{0}", NodoN.Dato);
+            ec[j] = NodoN.Dato;
+            j++;
+            ec2 += NodoN.Dato;
             if (NodoN.Derecha != null)
             {
                 i++;

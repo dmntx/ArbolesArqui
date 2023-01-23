@@ -38,7 +38,7 @@ namespace Arboles
                 default:
                     break;
             }
-
+            //Console.WriteLine(resultado);
             return resultado;
         }
 
